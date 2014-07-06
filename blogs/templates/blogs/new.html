@@ -1,0 +1,15 @@
+<h1>{{ poll.question }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'blogs:create' %}" method="post">
+{% csrf_token %}
+	Title:
+	<input type="text" name="title" id="title" />
+	Content:
+	<!-- <textarea id="content"></textarea> -->
+	Writer:
+	<input type="text" name="writer" id="writer" />
+
+<input type="submit" value="Create" />
+</form>
