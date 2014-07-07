@@ -1,9 +1,24 @@
 {% if blog_list %}
-    <ul>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Writer</th>
+        <th>Email</th>
+        <th>Date published</th>
+        <th> </th>
+        <th> </th>
+    </tr>
     {% for blog in blog_list %}
-        <li><a href="/blogs/{{ blog.id }}/">{{ blog.title }}</a></li>
+    <tr>
+        <td><a href="{% url 'blogs:show' blog.id %}">{{ blog.title }}</a></td>
+        <td>{{ blog.writer }}</td>
+        <td>{{ blog.email }}</td>
+        <td>{{ blog.published_at }}</td>
+        <td><a href="{% url 'blogs:edit' blog.id%}">Edit</a></td>
+        <td><a href="{% url 'blogs:destroy' blog.id%}" onclick="javascript:return(confirm('Are you sure?'))">Delete</a></td>
+    </tr>
     {% endfor %}
-    </ul>
+</table>
 {% else %}
     <p>No blog posts are available.</p>
 {% endif %}

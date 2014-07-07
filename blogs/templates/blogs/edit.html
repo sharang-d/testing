@@ -1,0 +1,18 @@
+<h1>{{ blog.question }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'blogs:update' blog.id %}" method="post">
+{% csrf_token %}
+    Title:
+    <input type="text" name="blog[title]" id="title" value="{{ blog.title }}"/>
+    Content:
+    <textarea id="content" name="blog[content]">{{ blog.content }}</textarea>
+    Writer:
+    <input type="text" name="blog[writer]" id="writer" value="{{ blog.writer }}"/>
+    Email:
+    <input type="text" name="blog[email]" id="email" value="{{ blog.email }}"/>
+    Published at:
+    {{ blog.published_at }}
+<input type="submit" value="Update" />
+</form>

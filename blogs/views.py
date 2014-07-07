@@ -1,44 +1,44 @@
-from django.template import RequestContext, loader
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.utils import timezone
-# Create your views here.
 
 from blogs.models import Blog
 
 def index(request):
     blog_list = Blog.objects.order_by('-published_at')
-    output = ', '.join([b.title for b in blog_list])
-    template = loader.get_template('blogs/index.html')
-    context = RequestContext(request, {
-        'blog_list': blog_list,
-    })
-    return HttpResponse(template.render(context))
+    return render(request, 'blogs/index.html', {'blog_list': blog_list,})
 
 def show(request, blog_id):
-    blog = Blog.objects.get(pk=blog_id)
-    template = loader.get_template('blogs/show.html')
-    context = RequestContext(request, {
-        'blog': blog,
-    })
-    return HttpResponse(template.render(context))
+    blog = get_object_or_404(Blog, pk=blog_id)
+    return render(request, 'blogs/show.html', {'blog': blog,})
 
 def new(request):
-	return render(request, 'blogs/new.html', {})
+    return render(request, 'blogs/new.html', {})
 
 def create(request):
-	b = Blog(title=request.POST['title'],
-			 # content=request.POST['content'],
-			 writer=request.POST['writer'],
-			 published_at=timezone.now())
-	b.save()
-	return HttpResponseRedirect(reverse('blogs:show', args=(b.id,)))
+    b = Blog(title=request.POST['blog[title]'],
+             content=request.POST['blog[content]'],
+             writer=request.POST['blog[writer]'],
+             published_at=timezone.now(),
+             email=request.POST['blog[email]'])
+    b.save()
+    return HttpResponseRedirect(reverse('blogs:show', args=(b.id,)))
 
-# # def edit(request):
+def edit(request, blog_id):
+    blog = Blog.objects.get(pk=blog_id)
+    return render(request, 'blogs/edit.html', {'blog': blog})
 
+def update(request, blog_id):
+    b = get_object_or_404(Blog, pk=blog_id)
+    b.title = request.POST['blog[title]']
+    b.content = request.POST['blog[content]']
+    b.writer = request.POST['blog[writer]']
+    b.email = request.POST['blog[email]']
+    b.save()
+    return HttpResponseRedirect(reverse('blogs:show', args=(b.id,)))
 
-# # def update(request):
-
-
-# # def destroy(request):
+def destroy(request, blog_id):
+    b = get_object_or_404(Blog, pk=blog_id)
+    b.delete()
+    return HttpResponseRedirect(reverse('blogs:index'))

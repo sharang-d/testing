@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class Blog(models.Model):
     content = models.TextField()
     writer = models.CharField(max_length=50)

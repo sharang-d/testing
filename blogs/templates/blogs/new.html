@@ -4,12 +4,13 @@
 
 <form action="{% url 'blogs:create' %}" method="post">
 {% csrf_token %}
-	Title:
-	<input type="text" name="title" id="title" />
-	Content:
-	<!-- <textarea id="content"></textarea> -->
-	Writer:
-	<input type="text" name="writer" id="writer" />
-
+    Title:
+    <input type="text" name="blog[title]" id="title" />
+    Content:
+    <textarea id="content" name="blog[content]"></textarea>
+    Writer:
+    <input type="text" name="blog[writer]" id="writer" />
+    Email:
+    <input type="text" name="blog[email]" id="email" />
 <input type="submit" value="Create" />
 </form>
