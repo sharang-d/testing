@@ -1,10 +1,8 @@
-from django.http import HttpResponse
 from django.template import RequestContext, loader
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.utils import timezone
->>>>>>> c1a8319b6e87588b5ae1f41edb2bfa8e9a580f6d
 # Create your views here.
 
 from blogs.models import Blog
