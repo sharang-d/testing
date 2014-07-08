@@ -1,3 +1,6 @@
+{% extends "blogs/layout.html" %}
+{% block title %}{{ blog.title }}{% endblock %}
+{% block content %}
 <h1>
     {{ blog.title }}
 </h1>
@@ -12,5 +15,5 @@
     Email: {{ blog.email }}
 </p>
 <br />
-<a href="/logout" onclick="javascript:return(confirm('Are you sure?'))">Logout!</a>
 <a href="/blogs">Home</a>
+{% endblock %}

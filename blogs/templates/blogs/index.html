@@ -1,3 +1,6 @@
+{% extends "blogs/layout.html" %}
+{% block title %}All posts{% endblock %}
+{% block content %}
 {% if blog_list %}
 <table>
     <tr>
@@ -10,16 +13,21 @@
     </tr>
     {% for blog in blog_list %}
     <tr>
-        <td><a href="{% url 'blogs:show' blog.id %}">{{ blog.title }}</a></td>
+        <td><a href="{% url 'blogs:show' blog.id %}" class="customLink">{{ blog.title }}</a></td>
         <td>{{ blog.writer }}</td>
         <td>{{ blog.email }}</td>
         <td>{{ blog.published_at }}</td>
-        <td><a href="{% url 'blogs:edit' blog.id%}">Edit</a></td>
-        <td><a href="{% url 'blogs:destroy' blog.id%}" onclick="javascript:return(confirm('Are you sure?'))">Delete</a></td>
+        <td><a href="{% url 'blogs:edit' blog.id%} " class="customLink">Edit</a></td>
+        <td><a href="{% url 'blogs:destroy' blog.id%}" onclick="javascript:return(confirm('Are you sure?'))" class="customLink">Delete</a></td>
     </tr>
     {% endfor %}
 </table>
 {% else %}
     <p>No blog posts are available.</p>
 {% endif %}
-<a href="/logout" onclick="javascript:return(confirm('Are you sure?'))">Logout!</a>
+<a href="/logout" onclick="javascript:return(confirm('Are you sure?'))" class="createNewPost">Logout!</a>
+<br /><br />
+<a href="/blogs/new" class="createNewPost">Create new post</a>
+<br /><br />
+<div class="clear"> </div>
+{% endblock %}

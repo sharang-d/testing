@@ -1,3 +1,6 @@
+{% extends "blogs/layout.html" %}
+{% block title %}Edit blog post{% endblock %}
+{% block content %}
 <h1>{{ blog.question }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -17,5 +20,5 @@
 <input type="submit" value="Update" />
 </form>
 <br />
-<a href="/logout" onclick="javascript:return(confirm('Are you sure?'))">Logout!</a>
 <a href="/blogs">Home</a>
+{% endblock %}

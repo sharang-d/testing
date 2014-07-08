@@ -1,3 +1,6 @@
+{% extends "blogs/layout.html" %}
+{% block title %}New Post{% endblock %}
+{% block content %}
 <h1>{{ poll.question }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -15,5 +18,5 @@
 <input type="submit" value="Create" />
 </form>
 <br />
-<a href="/logout" onclick="javascript:return(confirm('Are you sure?'))">Logout!</a>
 <a href="/blogs">Home</a>
+{% endblock %}

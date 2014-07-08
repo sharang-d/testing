@@ -68,6 +68,7 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
+    'django.core.context_processors.static',
 )
 
 # Internationalization
@@ -92,3 +93,9 @@ STATIC_URL = '/static/'
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Fun with Django'
 }
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static/'),
+)

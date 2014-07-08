@@ -1,0 +1,41 @@
+body, div, ul, li, p, h1, h2, h3, h4, h5, img {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: normal;
+}
+
+img {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+#header, #footer{
+    margin-bottom: 10px;
+    background: grey;
+    padding: 10px;
+}
+
+.container {
+    width: 940px;
+    margin: auto;
+}
+
+a.createNewPost {
+    background: red;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.clear {
+    clear:both;
+}
+
+a.customLink:hover {
+    color: red;
+}
